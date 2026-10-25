@@ -153,17 +153,17 @@ export function InventoryView() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2">
           <button
             onClick={() => setIsTransferOpen(true)}
-            className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-lg shadow-blue-950/40 transition"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-xs transition"
           >
             <ArrowLeftRight className="w-4 h-4" />
             <span>Traslado entre Sucursales</span>
           </button>
           <button
             onClick={() => setIsMermaOpen(true)}
-            className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs shadow-lg shadow-rose-950/40 transition"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs shadow-xs transition"
           >
             <AlertOctagon className="w-4 h-4" />
             <span>Ajuste / Merma</span>
@@ -172,7 +172,7 @@ export function InventoryView() {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+      <div className="flex items-center gap-2 border-b border-slate-800 pb-3 overflow-x-auto">
         {[
           { id: "matriz", label: "Existencias por Sucursal", icon: Warehouse },
           { id: "kardex", label: "Kardex / Historial de Movimientos", icon: History },
@@ -183,9 +183,9 @@ export function InventoryView() {
             <button
               key={t.id}
               onClick={() => setActiveTab(t.id as any)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap ${
                 isActive
-                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-950/30"
+                  ? "bg-emerald-600 text-white shadow-xs"
                   : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
               }`}
             >
@@ -199,7 +199,7 @@ export function InventoryView() {
       {/* Tab Content 1: Matriz */}
       {activeTab === "matriz" && (
         <div className="space-y-4">
-          <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="rounded-xl bg-[#111827] border border-slate-800 p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
             <div className="relative w-full sm:w-80">
               <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
@@ -207,7 +207,7 @@ export function InventoryView() {
                 placeholder="Buscar por producto o SKU..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500"
+                className="w-full pl-10 pr-4 py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500"
               />
             </div>
 
@@ -216,7 +216,7 @@ export function InventoryView() {
               <select
                 value={filterSucursalId}
                 onChange={(e) => setFilterSucursalId(e.target.value)}
-                className="px-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
+                className="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-200 focus:outline-none focus:border-emerald-500"
               >
                 <option value="all">Todas las 5 Sucursales</option>
                 {sucursales.map(s => (
@@ -226,10 +226,10 @@ export function InventoryView() {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden shadow-xl">
+          <div className="rounded-xl bg-[#111827] border border-slate-800 overflow-hidden shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs text-slate-300">
-                <thead className="bg-slate-950/60 border-b border-slate-800 text-[11px] font-bold uppercase text-slate-400 tracking-wider">
+                <thead className="bg-[#0e1420] border-b border-slate-800 text-[11px] font-bold uppercase text-slate-400 tracking-wider">
                   <tr>
                     <th className="py-4 px-4">Producto</th>
                     <th className="py-4 px-3">Sucursal Almacén</th>
@@ -304,18 +304,18 @@ export function InventoryView() {
       {/* Tab Content 2: Kardex */}
       {activeTab === "kardex" && (
         <div className="space-y-4">
-          <div className="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden shadow-xl">
-            <div className="p-4 bg-slate-950/40 border-b border-slate-800 flex items-center justify-between">
-              <h4 className="text-sm font-bold text-white flex items-center gap-2">
+          <div className="rounded-xl bg-[#111827] border border-slate-800 overflow-hidden shadow-xs">
+            <div className="p-3.5 sm:p-4 bg-[#0e1420] border-b border-slate-800 flex items-center justify-between">
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
                 <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
                 Libro Mayor de Kardex (Trazabilidad Total)
               </h4>
-              <span className="text-xs text-slate-400">Total movimientos: <strong className="text-white">{movimientos.length}</strong></span>
+              <span className="text-xs text-slate-400">Total movimientos: <strong className="text-white font-mono">{movimientos.length}</strong></span>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs text-slate-300">
-                <thead className="bg-slate-950/80 border-b border-slate-800 text-[11px] font-bold uppercase text-slate-400 tracking-wider">
+                <thead className="bg-[#0e1420] border-b border-slate-800 text-[11px] font-bold uppercase text-slate-400 tracking-wider">
                   <tr>
                     <th className="py-4 px-4">Fecha / Hora</th>
                     <th className="py-4 px-3">Tipo Movimiento</th>

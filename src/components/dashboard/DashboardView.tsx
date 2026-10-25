@@ -68,51 +68,48 @@ export function DashboardView() {
   }
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-300">
+    <div className="space-y-5 animate-in fade-in duration-200">
       {/* Banner de Bienvenida y Filtro Activo */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-6 sm:p-8">
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-radial from-emerald-500/10 to-transparent pointer-events-none"></div>
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              Tablero de Control Gerencial
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              {currentSucursal?.nombre || "SuperAhorro S.A."}
-            </h2>
-            <p className="text-sm text-slate-400 mt-1 max-w-xl">
-              Monitoreo transaccional en tiempo real, inventario multisede, rotación de productos y trazabilidad de lotes.
-            </p>
+      <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
+        <div>
+          <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 mb-1">
+            <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Tablero Gerencial de Control</span>
           </div>
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            {currentSucursal?.nombre || "SuperAhorro S.A."}
+          </h2>
+          <p className="text-xs text-slate-400 mt-0.5 max-w-xl">
+            Monitoreo en tiempo real de facturación, rotación de inventarios y control de perecederos.
+          </p>
+        </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => setActiveModule("pos")}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition shadow-lg shadow-emerald-950/40"
-            >
-              <ShoppingCart className="w-4 h-4" />
-              <span>Abrir Caja POS</span>
-            </button>
-            <button
-              onClick={() => setActiveModule("inventario")}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-xs transition"
-            >
-              <PackageSearch className="w-4 h-4" />
-              <span>Matriz de Inventario</span>
-            </button>
-          </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={() => setActiveModule("pos")}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-xs transition active:scale-95"
+          >
+            <ShoppingCart className="w-4 h-4" />
+            <span>Abrir Caja POS</span>
+          </button>
+          <button
+            onClick={() => setActiveModule("inventario")}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-xs transition"
+          >
+            <PackageSearch className="w-4 h-4" />
+            <span>Matriz de Stock</span>
+          </button>
         </div>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* KPI 1: Ventas Hoy */}
-        <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-5 shadow-lg relative overflow-hidden group hover:border-emerald-500/40 transition">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Ventas de Hoy</span>
-            <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <TrendingUp className="w-5 h-5" />
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ventas de Hoy</span>
+            <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <TrendingUp className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-3">
@@ -130,34 +127,34 @@ export function DashboardView() {
         </div>
 
         {/* KPI 2: Transacciones y Ticket Promedio */}
-        <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-5 shadow-lg relative overflow-hidden group hover:border-blue-500/40 transition">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 transition">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Ticket Promedio</span>
-            <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
-              <Receipt className="w-5 h-5" />
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ticket Promedio</span>
+            <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
+              <Receipt className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-3">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-mono tabular-nums">
               {formatCurrency(metrics.ticket_promedio)}
             </h3>
             <p className="text-xs text-slate-400 mt-2">
-              <span className="font-bold text-slate-200">{metrics.transacciones_hoy}</span> transacciones registradas hoy
+              <span className="font-bold text-slate-200 font-mono">{metrics.transacciones_hoy}</span> transacciones registradas hoy
             </p>
           </div>
         </div>
 
         {/* KPI 3: Stock Crítico Alertas */}
-        <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-5 shadow-lg relative overflow-hidden group hover:border-amber-500/40 transition">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 transition">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Stock Crítico</span>
-            <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-              <AlertTriangle className="w-5 h-5" />
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Stock Crítico</span>
+            <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+              <AlertTriangle className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-3">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-amber-300">
-              {metrics.productos_stock_critico} <span className="text-sm font-normal text-slate-400">productos</span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono tabular-nums">
+              {metrics.productos_stock_critico} <span className="text-xs font-normal text-slate-400">productos</span>
             </h3>
             <p className="text-xs text-slate-400 mt-2 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-amber-400"></span>
@@ -167,16 +164,16 @@ export function DashboardView() {
         </div>
 
         {/* KPI 4: Lotes Próximos a Vencer */}
-        <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-5 shadow-lg relative overflow-hidden group hover:border-rose-500/40 transition">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 transition">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Lotes por Vencer</span>
-            <div className="p-2.5 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20">
-              <CalendarClock className="w-5 h-5" />
+            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Lotes por Vencer</span>
+            <div className="p-2 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20">
+              <CalendarClock className="w-4 h-4" />
             </div>
           </div>
           <div className="mt-3">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-rose-300">
-              {metrics.lotes_por_vencer} <span className="text-sm font-normal text-slate-400">lotes</span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-rose-400 font-mono tabular-nums">
+              {metrics.lotes_por_vencer} <span className="text-xs font-normal text-slate-400">lotes</span>
             </h3>
             <p className="text-xs text-slate-400 mt-2 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-rose-400"></span>
@@ -187,22 +184,22 @@ export function DashboardView() {
       </div>
 
       {/* Gráficos Visuales y Comparativa Semanal */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
         {/* Gráfico de Ventas Semanal por Día */}
-        <div className="lg:col-span-2 rounded-2xl bg-slate-900/80 border border-slate-800 p-6 shadow-lg">
-          <div className="flex items-center justify-between mb-6">
+        <div className="lg:col-span-2 rounded-xl bg-[#111827] border border-slate-800 p-4 sm:p-5 shadow-xs">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <h4 className="text-base font-bold text-white">Comportamiento Semanal de Ventas</h4>
+              <h4 className="text-sm font-bold text-white">Comportamiento Semanal de Ventas</h4>
               <p className="text-xs text-slate-400">Total transaccionado en quetzales por día de la semana</p>
             </div>
-            <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               Semana Actual
             </span>
           </div>
 
-          {/* Bar Chart Representation with SVG */}
-          <div className="space-y-4">
-            <div className="h-56 w-full flex items-end justify-between gap-2 sm:gap-4 pt-6 pb-2 border-b border-slate-800">
+          {/* Bar Chart Representation */}
+          <div className="space-y-3">
+            <div className="h-52 w-full flex items-end justify-between gap-2 sm:gap-4 pt-6 pb-2 border-b border-slate-800">
               {[
                 { dia: "Lun", val: 840, pct: 45 },
                 { dia: "Mar", val: 1120, pct: 60 },
@@ -218,19 +215,19 @@ export function DashboardView() {
                   </span>
                   <div
                     style={{ height: `${Math.min(100, Math.max(15, (item.val / 2200) * 100))}%` }}
-                    className={`w-full max-w-[42px] rounded-t-lg transition-all duration-500 ${
+                    className={`w-full max-w-[42px] rounded-t-md transition-all duration-300 ${
                       item.today
-                        ? "bg-gradient-to-t from-emerald-600 to-teal-400 shadow-lg shadow-emerald-900/40"
-                        : "bg-slate-700/80 hover:bg-slate-600"
+                        ? "bg-emerald-500 hover:bg-emerald-400"
+                        : "bg-slate-800 hover:bg-slate-700"
                     }`}
                   ></div>
-                  <span className={`text-xs font-medium ${item.today ? "font-bold text-emerald-400" : "text-slate-400"}`}>
+                  <span className={`text-[11px] ${item.today ? "font-bold text-emerald-400" : "text-slate-400"}`}>
                     {item.dia}
                   </span>
                 </div>
               ))}
             </div>
-            <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-400 pt-1 gap-1">
               <span>Pico de afluencia: Viernes y Sábado</span>
               <span className="font-semibold text-emerald-400">Meta Semanal Superada en 112%</span>
             </div>
@@ -238,25 +235,25 @@ export function DashboardView() {
         </div>
 
         {/* Participación por Categoría */}
-        <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-6 shadow-lg flex flex-col justify-between">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 sm:p-5 shadow-xs flex flex-col justify-between">
           <div>
-            <h4 className="text-base font-bold text-white mb-1">Ventas por Categoría</h4>
-            <p className="text-xs text-slate-400 mb-5">Participación estimada de inventario vendido</p>
+            <h4 className="text-sm font-bold text-white mb-1">Ventas por Categoría</h4>
+            <p className="text-xs text-slate-400 mb-4">Participación estimada de inventario vendido</p>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {[
-                { cat: "Lácteos y Huevos", pct: 32, color: "bg-blue-500" },
-                { cat: "Abarrotes y Despensa", pct: 28, color: "bg-amber-500" },
-                { cat: "Carnes y Aves", pct: 18, color: "bg-rose-500" },
+                { cat: "Lácteos y Huevos", pct: 32, color: "bg-emerald-500" },
+                { cat: "Abarrotes y Despensa", pct: 28, color: "bg-blue-500" },
+                { cat: "Carnes y Aves", pct: 18, color: "bg-amber-500" },
                 { cat: "Bebidas y Refrescos", pct: 14, color: "bg-cyan-500" },
-                { cat: "Otros", pct: 8, color: "bg-purple-500" },
+                { cat: "Otros", pct: 8, color: "bg-slate-500" },
               ].map((item) => (
-                <div key={item.cat} className="space-y-1.5">
+                <div key={item.cat} className="space-y-1">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-slate-300 font-medium">{item.cat}</span>
                     <span className="font-bold text-white font-mono">{item.pct}%</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                  <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
                     <div
                       style={{ width: `${item.pct}%` }}
                       className={`h-full rounded-full ${item.color}`}
@@ -267,7 +264,7 @@ export function DashboardView() {
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+          <div className="mt-5 pt-3 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
             <span>Mayor rotación:</span>
             <span className="font-semibold text-slate-200">Lácteos Trebolac 1L</span>
           </div>
@@ -275,15 +272,15 @@ export function DashboardView() {
       </div>
 
       {/* Secciones de Alertas de Inventario & Últimas Ventas */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
         {/* Widget 1: Alertas de Stock Crítico y Vencimientos */}
-        <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-6 shadow-lg space-y-5">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 sm:p-5 shadow-xs space-y-4">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <div className="flex items-center gap-2.5">
-              <ShieldAlert className="w-5 h-5 text-amber-400" />
+              <ShieldAlert className="w-4 h-4 text-amber-400" />
               <div>
-                <h4 className="text-sm font-bold text-white">Alertas Operativas de Inventario</h4>
-                <p className="text-xs text-slate-400">Rotura inminente y control de caducidad</p>
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider">Alertas Operativas de Inventario</h4>
+                <p className="text-[11px] text-slate-400">Rotura inminente y control de caducidad</p>
               </div>
             </div>
             <button
@@ -296,10 +293,10 @@ export function DashboardView() {
           </div>
 
           {/* Lotes por vencer */}
-          <div className="space-y-2.5">
-            <h5 className="text-xs font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
+          <div className="space-y-2">
+            <h5 className="text-[11px] font-bold uppercase tracking-wider text-rose-400 flex items-center gap-1.5">
               <CalendarClock className="w-3.5 h-3.5" />
-              Productos Próximos a Vencer (Cadena de Perecederos)
+              Productos Próximos a Vencer (Perecederos)
             </h5>
             {expiringBatches.length === 0 ? (
               <p className="text-xs text-slate-500 italic py-2">No hay lotes con fecha crítica de caducidad.</p>
@@ -307,16 +304,16 @@ export function DashboardView() {
               expiringBatches.map((lote) => (
                 <div
                   key={lote.id}
-                  className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-between gap-3 text-xs"
+                  className="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-between gap-3 text-xs"
                 >
-                  <div>
-                    <p className="font-bold text-rose-200">{lote.producto_nombre}</p>
-                    <p className="text-[11px] text-rose-300/80">
-                      Lote: <span className="font-mono">{lote.numero_lote}</span> | Disp: <span className="font-bold">{lote.cantidad_disponible} uds</span>
+                  <div className="truncate">
+                    <p className="font-bold text-rose-200 truncate">{lote.producto_nombre}</p>
+                    <p className="text-[11px] text-rose-300/80 font-mono">
+                      Lote: {lote.numero_lote} | Disp: <span className="font-bold">{lote.cantidad_disponible} uds</span>
                     </p>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 font-bold text-[10px]">
+                    <span className="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold text-[10px] font-mono">
                       Vence: {formatDate(lote.fecha_vencimiento)}
                     </span>
                   </div>
@@ -326,8 +323,8 @@ export function DashboardView() {
           </div>
 
           {/* Stock mínimo crítico */}
-          <div className="space-y-2.5 pt-2">
-            <h5 className="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+          <div className="space-y-2 pt-1">
+            <h5 className="text-[11px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
               <AlertTriangle className="w-3.5 h-3.5" />
               Productos con Existencias Bajas
             </h5>
@@ -337,16 +334,16 @@ export function DashboardView() {
               criticalStock.map((inv) => (
                 <div
                   key={inv.id}
-                  className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-between gap-3 text-xs"
+                  className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-between gap-3 text-xs"
                 >
-                  <div>
-                    <p className="font-bold text-amber-200">{inv.producto?.nombre || "Producto"}</p>
+                  <div className="truncate">
+                    <p className="font-bold text-amber-200 truncate">{inv.producto?.nombre || "Producto"}</p>
                     <p className="text-[11px] text-amber-300/80">
-                      Ubicación: {inv.pasillo_ubicacion} | Mínimo requerido: {inv.stock_minimo_local} uds
+                      Ubicación: {inv.pasillo_ubicacion} | Mín: <span className="font-mono">{inv.stock_minimo_local}</span> uds
                     </p>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold text-xs">
+                    <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold text-xs font-mono">
                       {inv.stock_actual} uds
                     </span>
                   </div>
@@ -357,11 +354,11 @@ export function DashboardView() {
         </div>
 
         {/* Widget 2: Últimas Ventas en Tiempo Real */}
-        <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-6 shadow-lg space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 sm:p-5 shadow-xs space-y-3">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <div>
-              <h4 className="text-sm font-bold text-white">Últimas Transacciones Registradas</h4>
-              <p className="text-xs text-slate-400">Emisión de facturas y boletas en mostrador</p>
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Últimas Transacciones Registradas</h4>
+              <p className="text-[11px] text-slate-400">Emisión de facturas y boletas en mostrador</p>
             </div>
             <button
               onClick={() => setActiveModule("reportes")}
@@ -372,34 +369,34 @@ export function DashboardView() {
             </button>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             {recentSales.map((v) => (
               <div
                 key={v.id}
-                className="p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/60 flex items-center justify-between gap-3 hover:bg-slate-800 transition"
+                className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-between gap-3 hover:border-slate-700 transition"
               >
-                <div className="flex items-center gap-3 truncate">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                <div className="flex items-center gap-2.5 truncate">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/20">
                     <Receipt className="w-4 h-4" />
                   </div>
                   <div className="truncate text-xs">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                       <span className="font-bold text-white font-mono">{v.numero_factura}</span>
-                      <span className="text-[10px] uppercase font-bold px-1.5 py-0.2 rounded bg-slate-700 text-slate-300">
+                      <span className="text-[10px] uppercase font-bold px-1.5 py-0.2 rounded bg-slate-800 text-slate-300 border border-slate-700">
                         {v.metodo_pago.replace("_", " ")}
                       </span>
                     </div>
-                    <p className="text-slate-400 truncate mt-0.5">
-                      Cliente: <span className="text-slate-200">{v.cliente_nombre}</span> ({v.cliente_nit})
+                    <p className="text-slate-400 truncate text-[11px] mt-0.5">
+                      Cliente: <span className="text-slate-300">{v.cliente_nombre}</span> ({v.cliente_nit})
                     </p>
                   </div>
                 </div>
 
                 <div className="text-right shrink-0">
-                  <p className="font-bold text-emerald-400 text-sm font-mono">
+                  <p className="font-bold text-emerald-400 text-sm font-mono tabular-nums">
                     {formatCurrency(v.total)}
                   </p>
-                  <p className="text-[10px] text-slate-400">
+                  <p className="text-[10px] text-slate-400 font-mono">
                     {new Date(v.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </p>
                 </div>

@@ -124,34 +124,34 @@ export function ReportsView() {
       </div>
 
       {/* Summary Metrics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Recaudación Total</span>
-          <h3 className="text-2xl font-black text-emerald-400 font-mono mt-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="p-3.5 sm:p-4 rounded-xl bg-[#111827] border border-slate-800 shadow-xs">
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Recaudación Total</span>
+          <h3 className="text-2xl font-extrabold text-emerald-400 font-mono tabular-nums mt-1.5">
             {formatCurrency(totalVentas)}
           </h3>
           <p className="text-[11px] text-slate-400 mt-1">Ventas brutas consolidadas</p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">IVA Fiscal SAT (12%)</span>
-          <h3 className="text-2xl font-black text-blue-400 font-mono mt-2">
+        <div className="p-3.5 sm:p-4 rounded-xl bg-[#111827] border border-slate-800 shadow-xs">
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">IVA Fiscal SAT (12%)</span>
+          <h3 className="text-2xl font-extrabold text-blue-400 font-mono tabular-nums mt-1.5">
             {formatCurrency(totalIva)}
           </h3>
           <p className="text-[11px] text-slate-400 mt-1">Crédito/Débito fiscal tributario</p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Descuentos & Puntos</span>
-          <h3 className="text-2xl font-black text-amber-400 font-mono mt-2">
+        <div className="p-3.5 sm:p-4 rounded-xl bg-[#111827] border border-slate-800 shadow-xs">
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Descuentos & Puntos</span>
+          <h3 className="text-2xl font-extrabold text-amber-400 font-mono tabular-nums mt-1.5">
             {formatCurrency(totalDescuentos)}
           </h3>
           <p className="text-[11px] text-slate-400 mt-1">Beneficios otorgados a clientes</p>
         </div>
 
-        <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Costos de Merma</span>
-          <h3 className="text-2xl font-black text-rose-400 font-mono mt-2">
+        <div className="p-3.5 sm:p-4 rounded-xl bg-[#111827] border border-slate-800 shadow-xs">
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Costos de Merma</span>
+          <h3 className="text-2xl font-extrabold text-rose-400 font-mono tabular-nums mt-1.5">
             {formatCurrency(totalMermasQ)}
           </h3>
           <p className="text-[11px] text-slate-400 mt-1">{mermas.length} bajas registradas</p>
@@ -159,24 +159,24 @@ export function ReportsView() {
       </div>
 
       {/* Breakdown by Payment Method & Cashier */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
         {/* Payment Methods */}
-        <div className="rounded-2xl bg-slate-900 border border-slate-800 p-6 space-y-4">
-          <h4 className="text-sm font-bold text-white flex items-center gap-2">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 sm:p-5 shadow-xs space-y-3.5">
+          <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
             <CreditCard className="w-4 h-4 text-emerald-400" />
             Distribución por Método de Cobro
           </h4>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {Object.entries(porMetodo).map(([metodo, monto]) => {
               const pct = totalVentas > 0 ? ((monto / totalVentas) * 100).toFixed(1) : 0;
               return (
                 <div key={metodo} className="space-y-1">
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-bold text-slate-200 capitalize">{metodo.replace("_", " ")}</span>
-                    <span className="font-mono text-emerald-400 font-bold">{formatCurrency(monto)} ({pct}%)</span>
+                    <span className="font-mono text-emerald-400 font-bold tabular-nums">{formatCurrency(monto)} ({pct}%)</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                  <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
                     <div style={{ width: `${pct}%` }} className="h-full bg-emerald-500 rounded-full"></div>
                   </div>
                 </div>
@@ -186,13 +186,13 @@ export function ReportsView() {
         </div>
 
         {/* Ventas por Sucursal */}
-        <div className="rounded-2xl bg-slate-900 border border-slate-800 p-6 space-y-4">
-          <h4 className="text-sm font-bold text-white flex items-center gap-2">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 sm:p-5 shadow-xs space-y-3.5">
+          <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
             <Building2 className="w-4 h-4 text-emerald-400" />
             Ventas Totales por Sucursal
           </h4>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {sucursales.map((suc) => {
               const sucVentas = ventas.filter(v => v.sucursal_id === suc.id).reduce((s, v) => s + v.total, 0);
               const pct = totalVentas > 0 ? ((sucVentas / totalVentas) * 100).toFixed(1) : 0;
@@ -201,9 +201,9 @@ export function ReportsView() {
                 <div key={suc.id} className="space-y-1">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-slate-300 font-medium truncate max-w-[200px]">{suc.nombre}</span>
-                    <span className="font-mono text-white font-bold">{formatCurrency(sucVentas)} ({pct}%)</span>
+                    <span className="font-mono text-white font-bold tabular-nums">{formatCurrency(sucVentas)} ({pct}%)</span>
                   </div>
-                  <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                  <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
                     <div style={{ width: `${pct}%` }} className="h-full bg-blue-500 rounded-full"></div>
                   </div>
                 </div>
@@ -214,9 +214,9 @@ export function ReportsView() {
       </div>
 
       {/* Historical Sales Table */}
-      <div className="rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden shadow-xl">
-        <div className="p-4 bg-slate-950/40 border-b border-slate-800 flex items-center justify-between">
-          <h4 className="text-sm font-bold text-white flex items-center gap-2">
+      <div className="rounded-xl bg-[#111827] border border-slate-800 overflow-hidden shadow-xs">
+        <div className="p-3.5 sm:p-4 bg-[#0e1420] border-b border-slate-800 flex items-center justify-between">
+          <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
             <FileText className="w-4 h-4 text-emerald-400" />
             Registro Detallado de Facturas Fiscales
           </h4>
@@ -225,7 +225,7 @@ export function ReportsView() {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs text-slate-300">
-            <thead className="bg-slate-950/80 border-b border-slate-800 text-[11px] font-bold uppercase text-slate-400 tracking-wider">
+            <thead className="bg-[#0e1420] border-b border-slate-800 text-[11px] font-bold uppercase text-slate-400 tracking-wider">
               <tr>
                 <th className="py-4 px-4">No. Factura</th>
                 <th className="py-4 px-3">Sucursal</th>
