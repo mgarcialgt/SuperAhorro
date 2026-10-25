@@ -10,7 +10,8 @@ import {
   ChevronDown, 
   Building2,
   Check,
-  Store
+  Store,
+  PanelLeft
 } from "lucide-react";
 
 interface TopbarProps {
@@ -25,23 +26,36 @@ export function Topbar({ onToggleSidebar }: TopbarProps) {
     usuarios, 
     currentUser, 
     setCurrentUser,
+    activeModule,
     setActiveModule,
-    showNotification
+    showNotification,
+    isSidebarCollapsed,
+    toggleSidebarCollapse
   } = useApp();
 
   const [showSucursalesMenu, setShowSucursalesMenu] = useState(false);
   const [showUsersMenu, setShowUsersMenu] = useState(false);
 
   return (
-    <header className="sticky top-0 z-20 h-16 bg-[#0e1420]/95 backdrop-blur-md border-b border-slate-800 px-3 sm:px-6 flex items-center justify-between">
-      {/* Left: Mobile hamburger & Brand breadcrumb */}
-      <div className="flex items-center gap-3">
+    <header className="sticky top-0 z-20 h-16 bg-[#0e1420]/95 backdrop-blur-md border-b border-slate-800/80 px-3 sm:px-6 flex items-center justify-between transition-all duration-300">
+      {/* Left: Mobile hamburger & Desktop collapse toggle & Brand */}
+      <div className="flex items-center gap-2.5 sm:gap-3">
+        {/* Mobile Hamburger Drawer */}
         <button
           onClick={onToggleSidebar}
           aria-label="Abrir menú"
-          className="lg:hidden p-2 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition"
+          className="lg:hidden p-2 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition active:scale-95"
         >
           <Menu className="w-5 h-5" />
+        </button>
+
+        {/* Desktop Collapse/Expand Rail Button */}
+        <button
+          onClick={toggleSidebarCollapse}
+          title={isSidebarCollapsed ? "Expandir barra lateral" : "Contraer barra lateral"}
+          className="hidden lg:flex items-center justify-center p-2 rounded-lg bg-slate-800/60 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-700/60 transition active:scale-95"
+        >
+          <PanelLeft className={`w-4 h-4 transition-transform duration-300 ${isSidebarCollapsed ? "text-emerald-400 rotate-180" : ""}`} />
         </button>
 
         <div className="flex items-center gap-2">
@@ -73,6 +87,10 @@ export function Topbar({ onToggleSidebar }: TopbarProps) {
             }}
             className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 text-xs text-slate-200 transition"
           >
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
             <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
             <div className="text-left hidden sm:block">
               <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-wider leading-none">Sucursal</p>

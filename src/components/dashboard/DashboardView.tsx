@@ -105,7 +105,7 @@ export function DashboardView() {
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* KPI 1: Ventas Hoy */}
-        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ventas de Hoy</span>
             <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -113,7 +113,7 @@ export function DashboardView() {
             </div>
           </div>
           <div className="mt-3">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-mono tabular-nums">
               {formatCurrency(metrics.ventas_totales_hoy)}
             </h3>
             <div className="flex items-center gap-2 mt-2 text-xs">
@@ -127,7 +127,7 @@ export function DashboardView() {
         </div>
 
         {/* KPI 2: Transacciones y Ticket Promedio */}
-        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 transition">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Ticket Promedio</span>
             <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
@@ -145,7 +145,7 @@ export function DashboardView() {
         </div>
 
         {/* KPI 3: Stock Crítico Alertas */}
-        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 transition">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Stock Crítico</span>
             <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
@@ -164,7 +164,7 @@ export function DashboardView() {
         </div>
 
         {/* KPI 4: Lotes Próximos a Vencer */}
-        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 transition">
+        <div className="rounded-xl bg-[#111827] border border-slate-800 p-4 shadow-xs hover:border-slate-700 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Lotes por Vencer</span>
             <div className="p-2 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20">

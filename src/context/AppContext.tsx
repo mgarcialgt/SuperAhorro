@@ -27,6 +27,9 @@ interface AppContextType {
   isSupabaseActive: boolean;
   activeModule: string;
   setActiveModule: (module: string) => void;
+  isSidebarCollapsed: boolean;
+  setIsSidebarCollapsed: (collapsed: boolean) => void;
+  toggleSidebarCollapse: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -40,6 +43,26 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [isSupabaseActive, setIsSupabaseActive] = useState<boolean>(false);
   const [activeModule, setActiveModule] = useState<string>("dashboard");
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("superahorro_sidebar_collapsed");
+      if (saved !== null) {
+        setIsSidebarCollapsed(saved === "true");
+      }
+    }
+  }, []);
+
+  const toggleSidebarCollapse = () => {
+    setIsSidebarCollapsed(prev => {
+      const next = !prev;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("superahorro_sidebar_collapsed", String(next));
+      }
+      return next;
+    });
+  };
 
   const refreshData = () => {
     setRefreshKey(prev => prev + 1);
@@ -49,10 +72,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const id = Math.random().toString(36).substring(2, 9);
     setNotifications(prev => [...prev, { id, type, title, message }]);
 
-    // Auto dismiss after 4 seconds
+    // Auto dismiss after 5 seconds
     setTimeout(() => {
       removeNotification(id);
-    }, 4500);
+    }, 5000);
   };
 
   const removeNotification = (id: string) => {
@@ -100,6 +123,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         isSupabaseActive,
         activeModule,
         setActiveModule,
+        isSidebarCollapsed,
+        setIsSidebarCollapsed,
+        toggleSidebarCollapse,
       }}
     >
       {children}
